@@ -1,38 +1,12 @@
 import React, { Component } from "react";
-import "./App.css";
-import MovieBox from "./components/MovieBox.js";
+import App from "../App";
+import WatchMovie from "./WatchMovie.js";
 import $ from "jquery";
 
-class App extends Component {
-  
+class WatchList extends Component {
   constructor(props) {
     super(props);
     this.state = {};
-    //console.log("inisitial");
-    // const movies = [
-    //   {
-    //     id: 0,
-    //     poster:
-    //       "https://image.tmdb.org/t/p/w185_and_h278_bestv2/3iFm6Kz7iYoFaEcj4fLyZHAmTQA.jpg",
-    //     title: "the avenger ingitai",
-    //     overview: "hfoieijqefejfe"
-    //   },
-    //   {
-    //     id: 1,
-    //     poster:
-    //       "https://image.tmdb.org/t/p/w185_and_h278_bestv2/ydUpl3QkVUCHCq1VWvo2rW4Sf7y.jpg",
-    //     title: "the avenger",
-    //     overview: "hfoieijqefejfe"
-    //   }
-    // ];
-    // var movieBoxes = [];
-    // movies.forEach(movie => {
-    //   console.log(movie.id);
-    //   const movieBox = <MovieBox movie={movie} />;
-    //   movieBoxes.push(movieBox);
-    //   this.state = { rows: movieBoxes };
-    // });
-
     this.displayAll();
   }
   displayAll() {
@@ -48,7 +22,7 @@ class App extends Component {
         results.forEach(movie => {
           movie.poster = "https://image.tmdb.org/t/p/w185" + movie.poster_path;
           // console.log(movie.poster_path);
-          const movieBox = <MovieBox key={movie.id} movie={movie} />;
+          const movieBox = <WatchMovie key={movie.id} movie={movie} />;
           movieBoxes.push(movieBox);
         });
         this.setState({ rows: movieBoxes });
@@ -72,7 +46,7 @@ class App extends Component {
         results.forEach(movie => {
           movie.poster = "https://image.tmdb.org/t/p/w185" + movie.poster_path;
           //console.log(movie.poster_path);
-          const movieBox = <MovieBox key={movie.id} movie={movie} />;
+          const movieBox = <WatchMovie key={movie.id} movie={movie} />;
           movieBoxes.push(movieBox);
         });
         this.setState({ rows: movieBoxes });
@@ -98,10 +72,11 @@ class App extends Component {
         <table className="titleBar">
           <tbody>
             <tr>
-              <td><h3>Movie Search</h3></td>
+              <td>My WatchList</td>
             </tr>
           </tbody>
         </table>
+
         <input
           style={{
             fontSize: 24,
@@ -113,12 +88,6 @@ class App extends Component {
           onChange={this.searchChangeHandler.bind(this)}
           placeholder="Enter search term"
         />
-        <div className="button-div">
-          <button>Popular</button>
-          <button>Toprated</button>
-          <button>Upcoming</button>
-          <button>Playing</button>
-        </div>
         <div
           style={{
             position: "relative",
@@ -134,4 +103,4 @@ class App extends Component {
   }
 }
 
-export default App;
+export default WatchList;
